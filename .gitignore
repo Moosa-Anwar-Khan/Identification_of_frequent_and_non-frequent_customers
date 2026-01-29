@@ -1,0 +1,31 @@
+# Bytecode / caches
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+.venv/
+.env/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+
+# OS cruft
+.DS_Store
+Thumbs.db
+
+# Logs, checkpoints, models
+*.log
+*.ckpt
+*.bin
+*.safetensors
+*.pt
+!outputs/ml/**/*.safetensors
+
+# Jupyter
+.ipynb_checkpoints/data/
+data/
+outputs/.mplcache/
+#/data/All_Beauty.jsonl
+#/data/meta_All_Beauty.jsonl
