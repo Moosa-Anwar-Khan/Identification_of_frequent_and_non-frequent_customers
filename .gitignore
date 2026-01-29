@@ -25,7 +25,7 @@ Thumbs.db
 
 # Jupyter
 .ipynb_checkpoints/data/
-data/
+#data/
 outputs/.mplcache/
 #/data/All_Beauty.jsonl
 #/data/meta_All_Beauty.jsonl
