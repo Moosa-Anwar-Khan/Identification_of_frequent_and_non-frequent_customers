@@ -1,0 +1,8 @@
+best_threshold=0.29682227969169617
+best_fbeta_on_val=0.9551919580793496
+model_only_best_threshold=0.29682227969169617
+model_only_best_fbeta_on_val=0.9551919580793496
+threshold_tuning_beta=2.5
+threshold_tuning_min_recall=0.7
+class_counts_train=[6403.0, 2964.0]
+class_weights_loss=[0.47165532879818595, 1.528344671201814]

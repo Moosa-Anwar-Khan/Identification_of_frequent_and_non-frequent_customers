@@ -1,0 +1,6 @@
+epoch=1 train_loss=0.345102 val_loss=0.178589 best_thr_val=0.055486 best_fbeta_val=0.947062
+epoch=2 train_loss=0.163422 val_loss=0.161991 best_thr_val=0.053639 best_fbeta_val=0.953967
+epoch=3 train_loss=0.093058 val_loss=0.204653 best_thr_val=0.007292 best_fbeta_val=0.952678
+epoch=1 train_loss=0.354706 val_loss=0.169731 best_thr_val=0.382291 best_fbeta_val=0.945884
+epoch=2 train_loss=0.149892 val_loss=0.149263 best_thr_val=0.296822 best_fbeta_val=0.955192
+epoch=3 train_loss=0.084209 val_loss=0.207691 best_thr_val=0.004507 best_fbeta_val=0.954531
