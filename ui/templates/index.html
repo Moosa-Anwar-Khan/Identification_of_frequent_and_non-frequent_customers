@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Review Frequency Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body>
+    <div class="scene">
+      <header class="hero">
+
+        <h1>Instantly label a reviewer as Frequent or Non-Frequent</h1>
+      </header>
+
+      <main class="layout">
+        <section class="card input-card">
+          <div class="mode-toggle" role="tablist" aria-label="Prediction mode">
+            <button class="mode-btn active" type="button" data-mode="single">Single review</button>
+            <button class="mode-btn" type="button" data-mode="batch">CSV batch</button>
+          </div>
+
+          <div class="mode-panel active" id="single-mode">
+            <form id="review-form" autocomplete="off">
+              <label for="review-text">Review text</label>
+              <textarea
+                id="review-text"
+                name="review-text"
+                rows="8"
+                placeholder="Example: I keep coming back to this brand because the quality never lets me down..."
+                aria-label="Paste a review to classify"
+              ></textarea>
+              <div class="controls">
+                <button class="primary" type="submit">Analyze review</button>
+                <button class="ghost" type="button" id="clear-btn">Clear</button>
+                <span class="hint">Enter to submit | Shift+Enter for a new line</span>
+              </div>
+            </form>
+          </div>
+
+          <div class="mode-panel" id="batch-mode">
+            <form id="batch-form" autocomplete="off">
+              <label for="csv-file">Upload CSV (without header)</label>
+              <input id="csv-file" name="csv-file" type="file" accept=".csv" />
+              <p class="helper">CSV must have a single column of reviews (no header). The output will include review and label_intent.</p>
+              <div class="controls">
+                <button class="primary" type="submit">Label CSV</button>
+                <button class="ghost" type="button" id="clear-csv-btn">Clear</button>
+                <span class="hint">Download starts automatically after processing.</span>
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="card output-card" id="output-card" data-state="idle">
+          <div class="output-header">
+            <div>
+              <h2>Result</h2>
+              <p class="subtitle">Prediction, confidence, and model status.</p>
+            </div>
+            <span class="status" id="status-pill" data-state="idle">Idle</span>
+          </div>
+
+          <div class="empty-state" id="empty-state">
+            <div class="empty-title">Awaiting review</div>
+            <p>Paste a review and run analysis to see the classification here.</p>
+          </div>
+
+          <div class="result hidden" id="result" aria-live="polite">
+            <div class="result-main">
+              <div class="result-title" id="result-label">Frequent</div>
+              <div class="result-confidence">
+                <span class="confidence-value" id="confidence-value">--</span>
+                <span class="confidence-label">confidence</span>
+              </div>
+            </div>
+            <p class="result-note" id="result-note"></p>
+            <div class="meter">
+              <div class="meter-fill" id="meter-fill"></div>
+            </div>
+          </div>
+
+          <div class="error hidden" id="error-card" role="alert"></div>
+        </section>
+      </main>
+
+      <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

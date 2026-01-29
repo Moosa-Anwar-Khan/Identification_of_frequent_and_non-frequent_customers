@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="cardFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fff8ef"/>
+      <stop offset="1" stop-color="#f1e1cf"/>
+    </linearGradient>
+    <symbol id="star" viewBox="0 0 24 24">
+      <path d="M12 2l2.9 6.3 6.8.6-5.1 4.4 1.6 6.6L12 16l-6.2 3.8 1.6-6.6-5.1-4.4 6.8-.6L12 2z" />
+    </symbol>
+  </defs>
+  <rect width="1600" height="900" fill="#f6ead9"/>
+
+  <g opacity="0.55">
+    <rect x="120" y="120" width="520" height="300" rx="28" fill="url(#cardFill)" stroke="#d9c6b2" stroke-width="2"/>
+    <circle cx="180" cy="180" r="28" fill="#e1c9b2"/>
+    <rect x="230" y="160" width="280" height="16" rx="8" fill="#d8c2ad"/>
+    <rect x="230" y="188" width="220" height="14" rx="7" fill="#e4d1be"/>
+    <rect x="180" y="230" width="400" height="12" rx="6" fill="#e0ccb8"/>
+    <rect x="180" y="254" width="360" height="12" rx="6" fill="#e0ccb8"/>
+    <rect x="180" y="278" width="320" height="12" rx="6" fill="#e0ccb8"/>
+    <g fill="#e1b98f" opacity="0.8" transform="translate(180 310)">
+      <use href="#star" x="0" y="0" width="20" height="20"/>
+      <use href="#star" x="24" y="0" width="20" height="20"/>
+      <use href="#star" x="48" y="0" width="20" height="20"/>
+      <use href="#star" x="72" y="0" width="20" height="20"/>
+      <use href="#star" x="96" y="0" width="20" height="20"/>
+    </g>
+  </g>
+
+  <g opacity="0.5">
+    <rect x="880" y="220" width="560" height="340" rx="32" fill="#fff5e8" stroke="#d8c2ad" stroke-width="2"/>
+    <rect x="940" y="280" width="360" height="16" rx="8" fill="#d8c2ad"/>
+    <rect x="940" y="310" width="420" height="14" rx="7" fill="#e4d1be"/>
+    <rect x="940" y="346" width="460" height="12" rx="6" fill="#e0ccb8"/>
+    <rect x="940" y="370" width="420" height="12" rx="6" fill="#e0ccb8"/>
+    <rect x="940" y="394" width="380" height="12" rx="6" fill="#e0ccb8"/>
+    <g fill="#e1b98f" opacity="0.8" transform="translate(940 430)">
+      <use href="#star" x="0" y="0" width="22" height="22"/>
+      <use href="#star" x="26" y="0" width="22" height="22"/>
+      <use href="#star" x="52" y="0" width="22" height="22"/>
+      <use href="#star" x="78" y="0" width="22" height="22"/>
+      <use href="#star" x="104" y="0" width="22" height="22"/>
+    </g>
+  </g>
+
+  <g opacity="0.35">
+    <rect x="260" y="520" width="420" height="220" rx="24" fill="#fff3e4" stroke="#d9c6b2" stroke-width="2"/>
+    <rect x="300" y="570" width="280" height="14" rx="7" fill="#d8c2ad"/>
+    <rect x="300" y="596" width="240" height="12" rx="6" fill="#e0ccb8"/>
+    <rect x="300" y="620" width="200" height="12" rx="6" fill="#e0ccb8"/>
+  </g>
+</svg>
