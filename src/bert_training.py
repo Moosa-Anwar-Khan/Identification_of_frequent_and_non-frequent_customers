@@ -191,11 +191,11 @@ def _undersample_majority_train(
     else:
         g = group_train.fillna("__NA__").astype(str).to_numpy()
         neg_groups = g[neg_indices]
-        # Allocate samples proportional to neg group sizes
+        # Allocating samples proportional to neg group sizes
         uniq, counts = np.unique(neg_groups, return_counts=True)
         proportions = counts / counts.sum()
         alloc = np.floor(proportions * target_neg).astype(int)
-        # Fix rounding to hit target exactly
+        # Fixing rounding to hit target exactly
         while alloc.sum() < target_neg:
             alloc[np.argmax(proportions - (alloc / max(target_neg, 1)))] += 1
         while alloc.sum() > target_neg:
@@ -209,7 +209,7 @@ def _undersample_majority_train(
                 chosen_list.append(rng.choice(idx_u, size=k, replace=False))
         chosen_neg = np.concatenate(chosen_list) if chosen_list else rng.choice(neg_indices, size=target_neg, replace=False)
 
-        # If due to rounding/caps we got fewer than target_neg, top up randomly
+        # If we're short on negatives, add random ones to reach the target.
         if len(chosen_neg) < target_neg:
             remaining = np.setdiff1d(neg_indices, chosen_neg, assume_unique=False)
             topup = rng.choice(remaining, size=(target_neg - len(chosen_neg)), replace=False)
@@ -271,7 +271,7 @@ def _cap_keep_positives(
                 uniq, counts = np.unique(neg_groups, return_counts=True)
                 proportions = counts / counts.sum()
                 alloc = np.floor(proportions * k).astype(int)
-                # Fix rounding to hit target exactly
+                # Fixing rounding to hit target exactly
                 while alloc.sum() < k:
                     alloc[np.argmax(proportions - (alloc / max(k, 1)))] += 1
                 while alloc.sum() > k:
@@ -319,11 +319,10 @@ def run_bert_training(
     BERT fine-tuning for binary classification with:
       - Stratified train/val/test split
       - Class-weighted loss
-      - Train-only majority-class undersampling (NO oversampling)
-      - Threshold tuning via PR curve / F1(class=1) on validation
+      - Training-only majority-class undersampling
+      - Threshold tuning through PR curve / F1(class=1) on validation
       - Classification report and plots saved to outputs/ml
 
-    Notes:
       - Validation and test loaders are NOT resampled.
       - Threshold is tuned on validation, then applied to test.
     """
@@ -337,7 +336,7 @@ def run_bert_training(
 
     _configure_threads()
 
-    # Keep optional grouping columns for diversity-preserving undersampling
+    # Keeping optional grouping columns for diversity-preserving undersampling
     extra_cols = [c for c in UNDERSAMPLE_GROUP_COL_CANDIDATES if c in df.columns]
     user_group_col = "user_id" if "user_id" in df.columns else None
     cols = [text_col, label_col, *extra_cols]
@@ -388,7 +387,7 @@ def run_bert_training(
         seed=RANDOM_STATE,
     )
 
-    # Train-only majority-class undersampling (NO oversampling)
+    # Training-only majority-class undersampling
     X_train, y_train, group_train = _undersample_majority_train(
         X_train,
         y_train,
@@ -421,7 +420,7 @@ def run_bert_training(
             for p in base_model.parameters():
                 p.requires_grad = False
 
-    # Class weights for loss (inverse frequency)
+    # Giving more weight to the rare class in the loss because it helps the model pay more attention to minority class
     class_counts = np.bincount(y_train, minlength=2).astype(float)
     class_weights = (class_counts.sum() / np.clip(class_counts, 1.0, None))
     class_weights = class_weights / class_weights.mean()  # normalize
@@ -434,7 +433,7 @@ def run_bert_training(
     loss_fn = torch.nn.CrossEntropyLoss(weight=weight_tensor)
 
     # NOTE: We do NOT use WeightedRandomSampler here because it resamples with replacement
-    # (i.e., it is a form of oversampling). We rely on undersampling instead.
+    # (i.e., it is a form of oversampling). We rely on undersampling.
 
     train_ds = TextDataset(X_train, y_train, tokenizer, max_length=BERT_MAX_LENGTH)
     val_ds = TextDataset(X_val, y_val, tokenizer, max_length=BERT_MAX_LENGTH)
@@ -532,11 +531,11 @@ def run_bert_training(
             model.save_pretrained(best_model_dir)
             tokenizer.save_pretrained(best_model_dir)
 
-    # Load best checkpoint
+    # Loading best checkpoint
     model = AutoModelForSequenceClassification.from_pretrained(best_model_dir)
     model.to(device)
 
-    # Predict probabilities
+    # Predicting probabilities
     val_prob = _predict_proba(model, val_loader, device=device)
     test_prob = _predict_proba(model, test_loader, device=device)
 
@@ -593,7 +592,7 @@ def run_bert_training(
         f.write(f"class_weights_loss={class_weights.tolist()}\n")
 
     
-    # Save inference artifacts inside the best_model directory (used by predict_review.py)
+    # Saving inference artifacts inside the best_model directory (it is used by predict_review.py)
     try:
         os.makedirs(best_model_dir, exist_ok=True)
         with open(os.path.join(best_model_dir, "best_threshold.txt"), "w", encoding="utf-8") as f_thr:
