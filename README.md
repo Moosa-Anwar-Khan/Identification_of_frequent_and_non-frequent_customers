@@ -1,6 +1,15 @@
-# Identification of Frequent and Non-Frequent Customers
+# Identification of Frequent and Non-Frequent  
 
-This project studies whether a text-only BERT classifier, trained on manually labeled Amazon All_Beauty reviews, can distinguish frequent vs non-frequent customer intent. It provides training code, evaluation outputs, and simple prediction interfaces (CLI and web UI).
+**Team Project by:**
+**Moosa Anwar Khan (moosa.anwar.khan@uni-potsdam.de) and Abdul Azeem Sikandar (sikandar@uni-potsdam.de)**
+
+This repository contains the code, results, and figures for the research project: 
+
+**"Identification of frequent and non-frequent customers"**
+
+This project studies whether a text-only BERT classifier, trained on manually labeled Amazon All_Beauty reviews, can distinguish frequent vs non-frequent customer intent. It provides training code, evaluation outputs, and simple prediction interfaces (CLI and web UI). 
+
+The project was conducted as part of the course “Applied AI and Data Science” at the University of Potsdam.
 
 ## Research question
 Can a text-only BERT classifier, trained on manually labeled Amazon All_Beauty reviews, distinguish frequent/non-frequent customer intent?
