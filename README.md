@@ -19,7 +19,7 @@ We fine-tune a BERT model on labeled review text and evaluate it with standard c
 
 ## Data and labels
 - **Source**: Amazon All_Beauty reviews (stored under `data/` and `labeled_data/`).
-- **Large raw files**: `All_Beauty.jsonl` and `meta_All_Beauty.jsonl` are excluded from this repo due to size. It can be downloaded from `https://amazon-reviews-2023.github.io/`.
+- **Large raw files**: `All_Beauty.jsonl` and `meta_All_Beauty.jsonl` were excluded from data/ due to large size. It can be downloaded from `https://amazon-reviews-2023.github.io/`.
 - **Labels**: binary classes representing customer intent:
   - `1` = Frequent
   - `0` = Non-frequent
