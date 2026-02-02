@@ -45,7 +45,7 @@ Model artifacts and evaluation results are written to `outputs/`:
 - `src/config.py`: configuration for data paths, training hyperparameters, thresholds.
 
 ## Quick start
-For install dependencies:
+For installing dependencies:
 ```bash
 pip install -r requirements.txt
 ```
