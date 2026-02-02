@@ -51,7 +51,7 @@ def _read_label_map(model_dir: str) -> Dict[str, str]:
     if os.path.exists(p):
         with open(p, "r", encoding="utf-8") as f:
             data = json.load(f)
-        # ensure keys are strings
+        # ensuring keys are strings
         return {str(k): str(v) for k, v in data.items()}
     return {"0": "Non-frequent", "1": "Frequent"}
 

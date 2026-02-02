@@ -159,7 +159,7 @@ def plot_pr_curve(
     plt.title(t)
 
     if best_threshold is not None and thresholds is not None and len(thresholds) > 0:
-        # Find the PR point closest to best_threshold
+        # Finding the PR point closest to best_threshold
         idx = int(np.argmin(np.abs(thresholds - best_threshold)))
         # thresholds aligns with precision[:-1], recall[:-1]
         plt.scatter([recall[idx]], [precision[idx]])

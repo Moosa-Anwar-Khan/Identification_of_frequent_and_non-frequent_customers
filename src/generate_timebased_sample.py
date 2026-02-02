@@ -9,8 +9,8 @@ import pandas as pd
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.config import DATA_DIR, REVIEWS_PATH  # noqa: E402
-from src.preprocessing import clean_text  # noqa: E402
+from src.config import DATA_DIR, REVIEWS_PATH
+from src.preprocessing import clean_text
 
 
 TIME_PATTERNS = [

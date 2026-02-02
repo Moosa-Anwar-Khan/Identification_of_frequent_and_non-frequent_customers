@@ -30,9 +30,9 @@ UNDERSAMPLE_GROUP_COL_CANDIDATES = ["main_category", "store", "parent_asin"]
 
 RANDOM_STATE = 42
 
-# =========================
+# ############################
 # BERT training config
-# =========================
+# ############################
 # Data split proportions (stratified)
 TEST_SIZE = 0.20
 VAL_SIZE = 0.10  # fraction of the remaining train set
