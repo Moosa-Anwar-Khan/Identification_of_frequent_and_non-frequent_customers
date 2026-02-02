@@ -18,7 +18,8 @@ Can a text-only BERT classifier, trained on manually labeled Amazon All_Beauty r
 We fine-tune a BERT model on labeled review text and evaluate it with standard classification metrics. The repo also includes utilities to visualize results, run single or batch predictions, and serve a lightweight Flask UI for interactive use.
 
 ## Data and labels
-- **Source**: Amazon All_Beauty reviews (stored under `data/` and `labeled_data/`). The link to the Amazon All_Beauty reviews is: https://amazon-reviews-2023.github.io/
+- **Source**: Amazon All_Beauty reviews (stored under `data/` and `labeled_data/`).
+- **Large raw files**: `All_Beauty.jsonl` and `meta_All_Beauty.jsonl` are excluded from this repo due to size. It can be downloaded from `https://amazon-reviews-2023.github.io/`.
 - **Labels**: binary classes representing customer intent:
   - `1` = Frequent
   - `0` = Non-frequent
